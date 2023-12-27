@@ -1,0 +1,15 @@
+version: '3'
+services:
+  frontend_service:
+    container_name: frontend
+    build:
+      context: frontend
+    ports:
+      - 5173:5173
+      - 3001:3001 # expose vites server hmr port
+  backend_service:
+    container_name: api
+    build:
+      context: api
+    ports:
+      - 8000:8000
