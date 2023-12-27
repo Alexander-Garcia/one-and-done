@@ -6,10 +6,25 @@ services:
       context: frontend
     ports:
       - 5173:5173
-      - 3001:3001 # expose vites server hmr port
+      - 3001:3001 # expose vite server hmr port
+    develop:
+      watch:
+        - path: frontend/package.json
+          action: rebuild
+        - path: frontend/
+          target: /app
+          action: sync
   backend_service:
     container_name: api
     build:
       context: api
     ports:
       - 8000:8000
+    develop:
+      watch:
+        - path: api/requirements.txt
+          action: rebuild
+        - path: api/
+          target: /app
+          action: sync
+
