@@ -1,10 +1,14 @@
 # One-And-Done
 NBA Finals pick 'em game for friends
 
-# Front End
-Created using Vite and TS
+# Run the app
+Run `docker-compose up --build` in the root directory
+Open a spearate terminal window and run `docker compose watch` in root directory to enable hot reloading for the api and frontend
 
-# Back End
-Uses FastApi for python and utilizes: 
+# Front End
+Created using `create vite` with react-TS template
+
+# API
+Utilizes: 
 * [FastAPI](https://fastapi.tiangolo.com/)
 * [NBA API](https://github.com/swar/nba_api/tree/master)
