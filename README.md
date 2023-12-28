@@ -11,4 +11,4 @@ Created using `create vite` with react-TS template
 # API
 Utilizes: 
 * [FastAPI](https://fastapi.tiangolo.com/)
-* [NBA API](https://github.com/swar/nba_api/tree/master)
+* [NBA API](https://github.com/swar/nba_api/tree/master)  

@@ -14,7 +14,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get('/')
+@app.get('/api/scoreboard')
 def read_root():
     games = scoreboard.ScoreBoard()
     games_json = games.get_json()
