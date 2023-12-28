@@ -1,15 +1,20 @@
+import { useState } from 'react';
 import api from './api';
 import Header from './components/Header';
 
 function App() {
+  const [todayGames, setTodayGames] = useState([]);
+
   const handleClick = async () => {
-    const data: string = await api.get('/scoreboard');
-    console.log('data', data);
+    const { data, status } = await api.get('/scoreboard');
+    if (status === 200) {
+      setTodayGames(data);
+    }
   };
 
   return (
     <>
-      <Header />
+      <Header todayGames={todayGames} />
       <div>
         <h1>testing</h1>
       </div>
