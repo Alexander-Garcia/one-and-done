@@ -17,6 +17,10 @@ app.add_middleware(
 @app.get('/api/scoreboard')
 def read_root():
     games = scoreboard.ScoreBoard()
-    games_json = games.get_json()
+    games_dict = games.get_dict()
 
-    return { games_json }
+    if games_dict["meta"]["code"] == 200:
+        return games_dict["scoreboard"]["games"]
+    else:
+        return { "status": "failed" }
+
