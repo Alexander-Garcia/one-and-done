@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from nba_api.live.nba.endpoints import scoreboard
+from nba_api.live.nba.endpoints import boxscore
 
 app = FastAPI()
 
@@ -24,3 +25,9 @@ def read_root():
     else:
         return { "status": "failed" }
 
+@app.get('/api/box-score')
+def get_box_score(game_id):
+    print(type(game_id))
+    print(game_id)
+    box = boxscore.BoxScore(game_id=int(game_id))
+    print(box)
