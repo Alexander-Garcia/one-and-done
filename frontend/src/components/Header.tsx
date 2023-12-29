@@ -1,4 +1,5 @@
 import { styled } from "@mui/material"
+import { Game } from '../types';
 
 const Container = styled('div')(() => ({
   display: 'flex',
@@ -15,24 +16,11 @@ const GameCard = styled('div')(() => ({
   alignItems: 'center',
 }));
 
-type Team = {
-  teamId: number;
-  teamName: string;
-};
-
-type Game = {
-  gameStatusText: string;
-  gameId: string;
-  homeTeam: Team;
-  awayTeam: Team;
-};
-
 type HeaderProps = {
   todayGames: Game[];
 };
 
 function Header({ todayGames }: HeaderProps) {
-  console.log('todayGames', todayGames);
 
   return (
     <Container>

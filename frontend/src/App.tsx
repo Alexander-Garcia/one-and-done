@@ -3,16 +3,7 @@ import { styled } from '@mui/material';
 import api from './api';
 import Header from './components/Header';
 import Picker from './components/Picker';
-
-
-type Team = {
-  homeTeam: {
-    teamName: string;
-  }
-  awayTeam: {
-    teamName: string;
-  };
-};
+import { Game } from './types';
 
 const AppContainer = styled('div')(() => ({
   display: 'flex',
@@ -31,9 +22,9 @@ function App() {
       const { data, status } = result;
 
       if (status === 200) {
-        const teams = data.reduce((acc: string[], team: Team) => {
-          acc.push(team.homeTeam.teamName);
-          acc.push(team.awayTeam.teamName);
+        const teams = data.reduce((acc: string[], game: Game) => {
+          acc.push(game.homeTeam.teamName);
+          acc.push(game.awayTeam.teamName);
           return acc;
         }, [])
 
@@ -53,7 +44,7 @@ function App() {
   return (
     <AppContainer>
       <Header todayGames={todayGames} />
-      <Picker teams={teams} />
+      <Picker teams={teams} games={todayGames} />
       <div style={{ marginTop: 20 }}>
         <button onClick={onBoxScoreClick}>
           Box Score

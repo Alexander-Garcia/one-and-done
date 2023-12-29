@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import { InputLabel, MenuItem, FormControl, Select, SelectChangeEvent, styled } from '@mui/material';
+import api from '../api';
+import { Game } from '../types';
 
 const PickerContainer = styled('div')(() => ({
   display: 'flex',
@@ -14,14 +16,28 @@ const PickerContainer = styled('div')(() => ({
 
 type PickerProps = {
   teams: string[];
+  games: Game[];
 };
 
-function Picker({ teams }: PickerProps) {
+function Picker({ teams, games }: PickerProps) {
   const [selectedTeam, setSelectedTeam] = useState('');
   
-  const onTeamChange = (event: SelectChangeEvent) => {
-    setSelectedTeam(event.target.value);
+  const fetchBoxScore = async (gameId: string) => {
+    const data = await api.get('/box-score', { params: { game_id: gameId } });
+    console.log('data from box-score', data);
   };
+
+  const onTeamChange = async (event: SelectChangeEvent) => {
+    const team = event.target.value;
+    setSelectedTeam(team);
+
+    const gameId = games?.find(
+      ({ awayTeam, homeTeam }) => team === awayTeam.teamName || team === homeTeam.teamName)?.gameId;
+    if (gameId) {
+      await fetchBoxScore(gameId);
+    }
+  };
+
 
   return (
     <PickerContainer>
@@ -50,7 +66,6 @@ function Picker({ teams }: PickerProps) {
         </>
       )}
     </PickerContainer>
-
   );
 }
 
