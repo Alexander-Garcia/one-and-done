@@ -24,11 +24,10 @@ function App() {
   const [todayGames, setTodayGames] = useState([]);
   const [teams, setTeams] = useState([]);
   const [boxScore, setBoxScore] = useState([]);
-  console.log('box score', boxScore);
+  console.log('boxScore', boxScore);
 
   useEffect(() => {
     api.get('/scoreboard').then(result => {
-      console.log('result', result);
       const { data, status } = result;
 
       if (status === 200) {
@@ -69,17 +68,15 @@ function App() {
     <AppContainer>
       <Header todayGames={todayGames} />
       <Picker teams={teams} />
-      <div>
+      <div style={{ marginTop: 20 }}>
         <button onClick={onScoreboardClick}>
           Scoreboard
         </button>
+        {' '}
         <button onClick={onBoxScoreClick}>
           Box Score
         </button>
       </div>
-      <p>
-        Click on the Vite and React logos to learn more
-      </p>
     </AppContainer>
   )
 }

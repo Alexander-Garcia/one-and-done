@@ -38,12 +38,7 @@ function Picker({ teams }: PickerProps) {
               value={selectedTeam}
               label="Team"
               onChange={onTeamChange}
-              renderValue={(selected) => {
-                console.log('selected', selected);
-                if (selected.length === 0) {
-                  return <em>Team</em>;
-                }}}
-                >
+            >
                 <MenuItem disabled value="">
                   <em>Team</em>
                 </MenuItem>
