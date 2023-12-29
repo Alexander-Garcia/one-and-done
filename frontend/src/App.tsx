@@ -43,20 +43,6 @@ function App() {
     })
   }, [])
 
-  const onScoreboardClick = async () => {
-    const { data, status } = await api.get('/scoreboard');
-    if (status === 200) {
-      const teams = data.reduce((acc: string[], team: Team) => {
-        acc.push(team.homeTeam.teamName);
-        acc.push(team.awayTeam.teamName);
-        return acc;
-      }, [])
-
-      setTodayGames(data);
-      setTeams(teams);
-  }
-};
-
   const onBoxScoreClick = async () => {
     const { data, status } = await api.get('/box-score');
     if (status === 200) {
@@ -69,10 +55,6 @@ function App() {
       <Header todayGames={todayGames} />
       <Picker teams={teams} />
       <div style={{ marginTop: 20 }}>
-        <button onClick={onScoreboardClick}>
-          Scoreboard
-        </button>
-        {' '}
         <button onClick={onBoxScoreClick}>
           Box Score
         </button>
