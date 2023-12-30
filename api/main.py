@@ -27,7 +27,5 @@ def read_root():
 
 @app.get('/api/box-score')
 def get_box_score(game_id):
-    print(type(game_id))
-    print(game_id)
-    box = boxscore.BoxScore(game_id=int(game_id))
-    print(box)
+    box = boxscore.BoxScore(game_id=game_id)
+    print(box.get_dict())
