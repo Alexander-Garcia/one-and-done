@@ -36,15 +36,15 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
     python -m pip install -r requirements.txt
 
-# Comment out USER when using docker compose watch as you need edit permissions / root permissions
-# Switch to the non-privileged user to run the application.
-# USER appuser
-
 # Copy the source code into the container.
 COPY . .
+# Switch to the non-privileged user to run the application.
+RUN chown -R appuser
+USER appuser
+
 
 # Expose the port that the application listens on.
 EXPOSE 8000
 
 # Run the application.
-CMD uvicorn 'main:app' --host=0.0.0.0 --port=8000 --reload --reload-dir=./
+CMD uvicorn 'main:app' --host=0.0.0.0 --port=8000 
