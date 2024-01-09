@@ -39,7 +39,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 # Copy the source code into the container.
 COPY . .
 # Switch to the non-privileged user to run the application.
-RUN chown -R appuser
+RUN chown -R appuser .
 USER appuser
 
 
